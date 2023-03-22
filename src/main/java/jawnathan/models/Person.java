@@ -9,7 +9,7 @@ public class Person {
     private String middleName;
     private String lastName;
 
-    private List<PersonGigRole> personGigRoles = new ArrayList<>();
+    private List<GroupPerson> groupPersons = new ArrayList<>();
 
     public Person(int personId, String firstName, String middleName, String lastName) {
         this.personId = personId;
@@ -51,13 +51,5 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public List<PersonGigRole> getPersonGigRoles() {
-        return personGigRoles;
-    }
-
-    public void setPersonGigRoles(List<PersonGigRole> personGigRoles) {
-        this.personGigRoles = personGigRoles;
     }
 }

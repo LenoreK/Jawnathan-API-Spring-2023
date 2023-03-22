@@ -163,6 +163,13 @@ create table group_person (
         references person_role(person_role_id)
 );
 
+delimiter //
+create procedure set_known_good_state()
+begin
+
+	delete from venue;
+    alter table venue auto_increment = 1;
+
 insert into venue(venue_id, venue_name, url, address, city, state, zipcode) values
 	(1, "Up 'N Smoke", "https://weedstock.org/home", "474 Fleming Landing Road", "Townsend", "NJ", "19734"),
     (2, "Currans", "https://curransirishinnbensalem.com", "1909 Bristol Pike", "Bensalem", "PA", "19020"),

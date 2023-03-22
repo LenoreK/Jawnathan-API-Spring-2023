@@ -1,9 +1,14 @@
 package jawnathan.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Video {
     private int videoId;
     private String url;
     private String name;
+
+    private List<GroupVideo> groupVideos = new ArrayList<>();
 
     public Video(int videoId, String url, String name) {
         this.videoId = videoId;

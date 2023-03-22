@@ -13,6 +13,10 @@ public class Gig {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private List<Venue> venues = new ArrayList<>();
+    // call for something additional
+    private List<PersonGigRole> personGigRoles = new ArrayList<>();
+
+    private List<GroupGig> groupGigs = new ArrayList<>();
 
     public Gig(int gigId, LocalDate date, LocalDate endDate, String details, LocalDateTime startTime, LocalDateTime endTime) {
         this.gigId = gigId;
@@ -80,5 +84,21 @@ public class Gig {
 
     public void setVenues(List<Venue> venues) {
         this.venues = venues;
+    }
+
+    public List<PersonGigRole> getPersonGigRoles() {
+        return personGigRoles;
+    }
+
+    public void setPersonGigRoles(List<PersonGigRole> personGigRoles) {
+        this.personGigRoles = personGigRoles;
+    }
+
+    public List<GroupGig> getGroupGigs() {
+        return groupGigs;
+    }
+
+    public void setGroupGigs(List<GroupGig> groupGigs) {
+        this.groupGigs = groupGigs;
     }
 }
