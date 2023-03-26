@@ -166,80 +166,97 @@ create table group_person (
 delimiter //
 create procedure set_known_good_state()
 begin
+	set foreign_key_checks = 0;
+	truncate table app_user_role;
+	truncate table app_user;
+	truncate table app_role;
+	truncate table song;
+	truncate table album;
+	truncate table group_video;
+	truncate table video;
+	truncate table person_gig_role;
+	truncate table group_person;
+	truncate table person_role;
+	truncate table person;
+	truncate table musical_group;
+    truncate table gig;
+	truncate table venue;
+    set foreign_key_checks = 1;
+    
+    insert into venue(venue_id, venue_name, url, address, city, state, zipcode) values
+		(1, "Up 'N Smoke", "https://weedstock.org/home", "474 Fleming Landing Road", "Townsend", "NJ", "19734"),
+		(2, "Currans", "https://curransirishinnbensalem.com", "1909 Bristol Pike", "Bensalem", "PA", "19020"),
+		(3, "Anchor Rock Club", "https://www.anchorrockclub.com/", "247 New York Ave.", "Atlantic City", "NJ", "08041");
 
-	delete from venue;
-    alter table venue auto_increment = 1;
-
-insert into venue(venue_id, venue_name, url, address, city, state, zipcode) values
-	(1, "Up 'N Smoke", "https://weedstock.org/home", "474 Fleming Landing Road", "Townsend", "NJ", "19734"),
-    (2, "Currans", "https://curransirishinnbensalem.com", "1909 Bristol Pike", "Bensalem", "PA", "19020"),
-    (3, "Anchor Rock Club", "https://www.anchorrockclub.com/", "247 New York Ave.", "Atlantic City", "NJ", "08041");
-
-insert into gig(gig_id, gig_date, gig_end_date, details, start_time, end_time, venue_id) values
-	(1, '2024-06-25', Null, "Last minute gig at Currans in Bensalem. I’ll be playing two Irish songs I know.", '20:00', '23:00', 2),
-    (2, '2024-04-28', '2024-04-30', "First Stop on our mums the word national tour", Null, NUll, 1),
-    (3, '2024-04-20', Null, "Mums the Word will be playing at AC this 4-20.", '21:00', Null, 3);
-
-insert into musical_group(group_id, group_name, genre, group_photo_url, group_website_url) values
-	(1, "Mums the Word", "alternative rock", "https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", Null),
-    (2, "Jawnathan Sebastian Sellers", "folk rock", "https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/307377666_568501515277188_113188498116520371_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=_Iw7Jz6KvLYAX_uJKbI&_nc_ht=scontent-atl3-1.xx&oh=00_AfA2qrFpJS74zWUvSw51HWlTq5ePp-mYZm_lQNLDKKAJ1A&oe=641BAC5F", Null),
-    (3, "Cheezy and the Crackers", "Reggae", "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/223291674_239674261316227_4482802649013981033_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=kbYDLmyJlcEAX_pShtS&_nc_ht=scontent-atl3-2.xx&oh=00_AfD90NeI7evbICEu8eExSkxDtY5-dKJemZ-tpmT9RIrVTg&oe=641BAB5C", Null);
-
- insert into person(person_id, first_name, middle_name, last_name) values
+    insert into gig(gig_id, gig_date, gig_end_date, details, start_time, end_time, venue_id) values
+		(1, '2024-06-25', Null, "Last minute gig at Currans in Bensalem. I’ll be playing two Irish songs I know.", '20:00', '23:00', 2),
+		(2, '2024-04-28', '2024-04-30', "First Stop on our mums the word national tour", Null, NUll, 1),
+		(3, '2024-04-20', Null, "Mums the Word will be playing at AC this 4-20.", '21:00', Null, 3);
+        
+    insert into musical_group(group_id, group_name, genre, group_photo_url, group_website_url) values
+		(1, "Mums the Word", "alternative rock", "https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", Null),
+		(2, "Jawnathan Sebastian Sellers", "folk rock", "https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/307377666_568501515277188_113188498116520371_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=_Iw7Jz6KvLYAX_uJKbI&_nc_ht=scontent-atl3-1.xx&oh=00_AfA2qrFpJS74zWUvSw51HWlTq5ePp-mYZm_lQNLDKKAJ1A&oe=641BAC5F", Null),
+		(3, "Cheezy and the Crackers", "Reggae", "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/223291674_239674261316227_4482802649013981033_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=kbYDLmyJlcEAX_pShtS&_nc_ht=scontent-atl3-2.xx&oh=00_AfD90NeI7evbICEu8eExSkxDtY5-dKJemZ-tpmT9RIrVTg&oe=641BAB5C", Null);
+     
+	insert into person(person_id, first_name, middle_name, last_name) values
 	(1, "Jawnathan", "Sebastian", "Sellers"),
     (2, "Ginny", Null, "Gogarty"),
     (3, "Kevin", Null, "Poynter");
-
- insert into person_role(person_role_id, person_role_name) values
-	(1, "Guitarist"),
-    (2, "Pianist"),
-    (3, "Singer"),
-    (4, "Dummer");
-
-insert into group_person(person_id, group_id, person_role_id) values
-	(1,2,3),
-    (1,1,3),
-    (2,2,1),
-    (3,2,2);
- 
-insert into person_gig_role(person_id, gig_id, person_role_id) values
-	(1,2,1),
-    (1,1,2),
-    (2,1,1),
-    (3,2,3),
-    (2,3,2),
-    (3,3,1);
-
-insert into video(video_id, video_url, video_name) values
-	(1, "https://joy1.videvo.net/videvo_files/video/free/2013-09/large_watermarked/DiscoLights2Videvo_preview.mp4", "stage lights"),
-    (2, "https://joy1.videvo.net/videvo_files/video/free/video0455/large_watermarked/_import_609113a1be0e89.39394997_preview.mp4", "typing on computer"),
-    (3, "https://joy1.videvo.net/videvo_files/video/free/video0461/large_watermarked/_import_60e0167b4c3a96.14254367_preview.mp4", "Grass");
-
-insert into group_video(group_id, video_id) values
-	(1,1),
-    (2,2),
-    (3,3);
-
-insert into album(album_id, album_name, release_year, photo_url, buy_album_url) values
-	(1, "Fake album", 2021, Null, Null);
-
-insert into song(song_id, song_name, listen_to_song, photo_url, buy_song_url, album_id, group_id) values
-	(1, "A 5 to 9", "https://open.spotify.com/track/54j0KYUOyh093AEWRih3ff", Null, Null, Null, 1),
-    (2, "Wind but Never Sails", "https://open.spotify.com/album/37dmOkAhhqwgbRWtE1qaIs", Null, Null, Null, 1),
-    (3, "Fake Song", "https://open.spotify.com/album/37dmOkAhhqwgbRWtE1qaIs", Null, Null, 1, 3);
-
-insert into app_role (`name`) values
-    ('USER'),
-    ('ADMIN');
-
--- passwords are set to "P@ssw0rd!"
-insert into app_user (username, first_name, last_name, email, password_hash, enabled)
-    values
-    ('jawnathan91', "Jawnathan", "Sellers", "jawanathansebastiansellers@gmail.com", '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1),
-    ('sally91', "Sally", "Jones", 'sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1);
-
-insert into app_user_role
-    values
-    (1, 2),
-    (2, 1);
     
+    insert into person_role(person_role_id, person_role_name) values
+		(1, "Guitarist"),
+		(2, "Pianist"),
+		(3, "Singer"),
+		(4, "Dummer");
+     
+	insert into group_person(person_id, group_id, person_role_id) values
+		(1,2,3),
+		(1,1,3),
+		(2,2,1),
+		(3,2,2);
+
+    insert into person_gig_role(person_id, gig_id, person_role_id) values
+		(1,2,1),
+		(1,1,2),
+		(2,1,1),
+		(3,2,3),
+		(2,3,2),
+		(3,3,1);
+
+    insert into video(video_id, video_url, video_name) values
+		(1, "https://joy1.videvo.net/videvo_files/video/free/2013-09/large_watermarked/DiscoLights2Videvo_preview.mp4", "stage lights"),
+		(2, "https://joy1.videvo.net/videvo_files/video/free/video0455/large_watermarked/_import_609113a1be0e89.39394997_preview.mp4", "typing on computer"),
+		(3, "https://joy1.videvo.net/videvo_files/video/free/video0461/large_watermarked/_import_60e0167b4c3a96.14254367_preview.mp4", "Grass");
+
+    insert into group_video(group_id, video_id) values
+		(1,1),
+		(2,2),
+		(3,3);
+
+	insert into album(album_id, album_name, release_year, photo_url, buy_album_url) values
+		(1, "Fake album", 2021, Null, Null);
+
+	insert into song(song_id, song_name, listen_to_song, photo_url, buy_song_url, album_id, group_id) values
+		(1, "A 5 to 9", "https://open.spotify.com/track/54j0KYUOyh093AEWRih3ff", Null, Null, Null, 1),
+		(2, "Wind but Never Sails", "https://open.spotify.com/album/37dmOkAhhqwgbRWtE1qaIs", Null, Null, Null, 1),
+		(3, "Fake Song", "https://open.spotify.com/album/37dmOkAhhqwgbRWtE1qaIs", Null, Null, 1, 3);
+
+	insert into app_role (`name`) values
+		('USER'),
+		('ADMIN');
+        
+	-- passwords are set to "P@ssw0rd!"
+	insert into app_user (username, first_name, last_name, email, password_hash, enabled) values
+		('jawnathan91', "Jawnathan", "Sellers", "jawanathansebastiansellers@gmail.com", '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1),
+		('sally91', "Sally", "Jones", 'sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 1);
+
+	insert into app_user_role values
+		(1, 2),
+		(2, 1);
+
+end //
+delimiter ;
+
+set sql_safe_updates = 0;
+call set_known_good_state();
+set sql_safe_updates = 1;

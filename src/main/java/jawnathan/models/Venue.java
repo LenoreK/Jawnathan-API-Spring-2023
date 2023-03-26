@@ -16,7 +16,6 @@ public class Venue {
         this.address = address;
         this.city = city;
         this.state = state;
-        this.zipcode = zipcode;
     }
 
     public Venue() {
