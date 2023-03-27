@@ -1,0 +1,1 @@
+use location hook for hiding buttons on nav bar
