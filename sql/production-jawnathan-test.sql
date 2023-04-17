@@ -88,7 +88,6 @@ create table app_user_role (
 create table gig (
 	gig_id int primary key auto_increment,
     gig_date date not null,
-    gig_end_date date,
     details varchar(1000),
     start_time time,
     end_time time,
@@ -188,10 +187,10 @@ begin
 		(2, "Currans", "https://curransirishinnbensalem.com", "1909 Bristol Pike", "Bensalem", "PA", "19020"),
 		(3, "Anchor Rock Club", "https://www.anchorrockclub.com/", "247 New York Ave.", "Atlantic City", "NJ", "08041");
 
-    insert into gig(gig_id, gig_date, gig_end_date, details, start_time, end_time, venue_id) values
-		(1, '2024-06-25', Null, "Last minute gig at Currans in Bensalem. I’ll be playing two Irish songs I know.", '20:00', '23:00', 2),
-		(2, '2024-04-28', '2024-04-30', "First Stop on our mums the word national tour", Null, NUll, 1),
-		(3, '2024-04-20', Null, "Mums the Word will be playing at AC this 4-20.", '21:00', Null, 3);
+    insert into gig(gig_id, gig_date, details, start_time, end_time, venue_id) values
+		(1, '2024-06-25', "Last minute gig at Currans in Bensalem. I’ll be playing two Irish songs I know.", '20:00', '23:00', 2),
+		(2, '2024-04-28', "First Stop on our mums the word national tour", Null, NUll, 1),
+		(3, '2024-04-20', "Mums the Word will be playing at AC this 4-20.", '21:00', Null, 3);
         
     insert into musical_group(group_id, group_name, genre, group_photo_url, group_website_url) values
 		(1, "Mums the Word", "alternative rock", "https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", Null),

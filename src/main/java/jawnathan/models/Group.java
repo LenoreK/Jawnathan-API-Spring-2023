@@ -15,6 +15,10 @@ public class Group {
         this.websiteUrl = websiteUrl;
     }
 
+    public Group() {
+
+    }
+
     public int getGroupId() {
         return groupId;
     }

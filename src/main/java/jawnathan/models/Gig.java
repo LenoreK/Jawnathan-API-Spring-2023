@@ -2,6 +2,7 @@ package jawnathan.models;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,8 @@ public class Gig {
     private int gigId;
     private LocalDate date;
     private String details;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     private int venueId;
     private List<PersonGigRole> personGigRoles = new ArrayList<>();
@@ -18,7 +19,7 @@ public class Gig {
 
     private List<GroupGig> groupGigs = new ArrayList<>();
 
-    public Gig(int gigId, LocalDate date, LocalDate endDate, String details, LocalDateTime startTime, LocalDateTime endTime, int venueId) {
+    public Gig(int gigId, LocalDate date, LocalDate endDate, String details, LocalTime startTime, LocalTime endTime, int venueId) {
         this.gigId = gigId;
         this.date = date;
         this.details = details;
@@ -54,22 +55,6 @@ public class Gig {
         this.details = details;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
-
     public List<PersonGigRole> getPersonGigRoles() {
         return personGigRoles;
     }
@@ -100,5 +85,21 @@ public class Gig {
 
     public void setVenueId(int venueId) {
         this.venueId = venueId;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
 }

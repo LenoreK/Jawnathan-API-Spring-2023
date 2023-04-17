@@ -9,6 +9,8 @@ public class Person {
     private String middleName;
     private String lastName;
 
+    private String photo;
+
     private List<GroupPerson> groupPersons = new ArrayList<>();
 
     public Person(int personId, String firstName, String middleName, String lastName) {
@@ -51,5 +53,13 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
