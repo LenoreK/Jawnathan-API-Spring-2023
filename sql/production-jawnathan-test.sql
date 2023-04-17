@@ -22,7 +22,8 @@ create table person (
 	person_id int primary key auto_increment,
     first_name varchar(50) not null,
     middle_name varchar(50),
-    last_name varchar(50) not null
+    last_name varchar(50) not null,
+    photo varchar(500)
 );
 
 create table musical_group (
@@ -44,7 +45,7 @@ create table album (
 create table song (
 	song_id int primary key auto_increment,
     song_name varchar(50) not null,
-    listen_to_song varchar(320) not null,
+    song_url varchar(320) not null,
     photo_url varchar(320),
     buy_song_url varchar(320),
     album_id int,
@@ -88,7 +89,7 @@ create table app_user_role (
 create table gig (
 	gig_id int primary key auto_increment,
     gig_date date not null,
-    details varchar(1000),
+    details varchar(1000) not null,
     start_time time,
     end_time time,
     venue_id int not null,
@@ -197,10 +198,10 @@ begin
 		(2, "Jawnathan Sebastian Sellers", "folk rock", "https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/307377666_568501515277188_113188498116520371_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=_Iw7Jz6KvLYAX_uJKbI&_nc_ht=scontent-atl3-1.xx&oh=00_AfA2qrFpJS74zWUvSw51HWlTq5ePp-mYZm_lQNLDKKAJ1A&oe=641BAC5F", Null),
 		(3, "Cheezy and the Crackers", "Reggae", "https://scontent-atl3-2.xx.fbcdn.net/v/t39.30808-6/223291674_239674261316227_4482802649013981033_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=kbYDLmyJlcEAX_pShtS&_nc_ht=scontent-atl3-2.xx&oh=00_AfD90NeI7evbICEu8eExSkxDtY5-dKJemZ-tpmT9RIrVTg&oe=641BAB5C", Null);
      
-	insert into person(person_id, first_name, middle_name, last_name) values
-	(1, "Jawnathan", "Sebastian", "Sellers"),
-    (2, "Ginny", Null, "Gogarty"),
-    (3, "Kevin", Null, "Poynter");
+	insert into person(person_id, first_name, middle_name, last_name, photo) values
+	(1, "Jawnathan", "Sebastian", "Sellers", null),
+    (2, "Ginny", Null, "Gogarty", null),
+    (3, "Kevin", Null, "Poynter", null);
     
     insert into person_role(person_role_id, person_role_name) values
 		(1, "Guitarist"),
@@ -235,7 +236,7 @@ begin
 	insert into album(album_id, album_name, release_year, photo_url, buy_album_url) values
 		(1, "Fake album", 2021, Null, Null);
 
-	insert into song(song_id, song_name, listen_to_song, photo_url, buy_song_url, album_id, group_id) values
+	insert into song(song_id, song_name, song_url, photo_url, buy_song_url, album_id, group_id) values
 		(1, "A 5 to 9", "https://open.spotify.com/track/54j0KYUOyh093AEWRih3ff", Null, Null, Null, 1),
 		(2, "Wind but Never Sails", "https://open.spotify.com/album/37dmOkAhhqwgbRWtE1qaIs", Null, Null, Null, 1),
 		(3, "Fake Song", "https://open.spotify.com/album/37dmOkAhhqwgbRWtE1qaIs", Null, Null, 1, 3);
@@ -259,3 +260,5 @@ delimiter ;
 set sql_safe_updates = 0;
 call set_known_good_state();
 set sql_safe_updates = 1;
+
+select * from album;
